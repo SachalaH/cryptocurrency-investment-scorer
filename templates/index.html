@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Crypto Price Predict</title>
+    <meta content="" name="description" />
+
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link
+      href="{{url_for('static',filename='assets/img/bitcoin-btc-logo.png')}}"
+      rel="icon"
+    />
+    <link
+      href="{{url_for('static',filename='assets/img/bitcoin-btc-logo.png')}}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{{url_for('static',filename='assets/vendor/aos/aos.css')}}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{url_for('static',filename='assets/vendor/bootstrap/css/bootstrap.min.css')}}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{url_for('static',filename='assets/vendor/bootstrap-icons/bootstrap-icons.css')}}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{url_for('static',filename='assets/vendor/glightbox/css/glightbox.min.css')}}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{url_for('static',filename='assets/vendor/remixicon/remixicon.css')}}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{url_for('static',filename='assets/vendor/swiper/swiper-bundle.min.css')}}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link
+      href="{{url_for('static',filename='assets/css/style.css')}}"
+      rel="stylesheet"
+    />
+
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+      <div
+        class="container-fluid container-xl d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <span>Crypto Price Predict</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#method">Methodology</a></li>
+            <li>
+              <a class="nav-link scrollto" href="#feature">Features</a>
+            </li>
+            <li><a class="nav-link scrollto" href="#market">Price</a></li>
+
+            <li><a class="nav-link scrollto" href="#team">Team</a></li>
+            <li>
+              <a class="getstarted scrollto" href="#predict">Predict</a>
+            </li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 d-flex flex-column justify-content-center">
+            <h1 data-aos="fade-up">
+              Our algorithm will predict the price of your favorite crypto
+              currency
+            </h1>
+            <h2 data-aos="fade-up" data-aos-delay="400">
+              We have achieved this with the help of Machine Learning and
+              Sentiment Analysis
+            </h2>
+            <div data-aos="fade-up" data-aos-delay="600">
+              <div class="text-center text-lg-start">
+                <a
+                  href="#about"
+                  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
+                >
+                  <span>Get Started</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-lg-6 hero-img"
+            data-aos="zoom-out"
+            data-aos-delay="200"
+          >
+            <img
+              src="{{url_for('static',filename='assets/img/cryptocurrency-trading-platform.png')}}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Hero -->
+
+    <main id="main">
+      <!-- ======= About Section ======= -->
+      <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+          <div class="row gx-0">
+            <div
+              class="col-lg-6 d-flex flex-column justify-content-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="content">
+                <h3>Who We Are</h3>
+                <h2>
+                  The final year students of KJ Somaiya College of Engineering
+                </h2>
+                <p>
+                  This is our final year project, in which we have created a
+                  Machine Learning model to predict the price of Bitcoin,
+                  Ethereum and Matic cryptocurrencies. Our algorithm recommends
+                  you whether to Buy the cryptocurrencies or Not.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-6 d-flex align-items-center"
+              data-aos="zoom-out"
+              data-aos-delay="200"
+            >
+              <img
+                src="{{url_for('static',filename='assets/img/team-vector.webp')}}"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End About Section -->
+
+      <!-- ======= Methodology Section ======= -->
+      <section id="method" class="values">
+        <div class="container" data-aos="fade-up">
+          <header class="section-header">
+            <h2>Our Methodology</h2>
+            <p>What Our Algorithm Does?</p>
+          </header>
+
+          <div class="row">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="box">
+                <img
+                  src="{{url_for('static',filename='assets/img/s1.webp')}}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h3>Machine Learning</h3>
+                <p>We predict the price using a ML algorithm.</p>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-4 mt-4 mt-lg-0"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="box">
+                <img
+                  src="{{url_for('static',filename='assets/img/s2.webp')}}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h3>Sentiment Analysis</h3>
+                <p>We then check the market sentiment.</p>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-4 mt-4 mt-lg-0"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <div class="box">
+                <img
+                  src="{{url_for('static',filename='assets/img/s3-1.webp')}}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h3>Recommendation</h3>
+                <p>Our algorithm works and gives you the best recommendation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Values Section -->
+
+      <!-- ======= Features Section ======= -->
+      <section id="feature" class="features">
+        <div class="container" data-aos="fade-up">
+          <header class="section-header">
+            <h2>Features</h2>
+            <p>The crypto algorithm has following to offer!</p>
+          </header>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <img
+                src="{{url_for('static',filename='assets/img/features.png')}}"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+
+            <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
+              <div class="row align-self-center gy-4">
+                <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Prediction for 5 days</h3>
+                  </div>
+                </div>
+
+                <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Overall sentiment</h3>
+                  </div>
+                </div>
+
+                <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Average predicted price</h3>
+                  </div>
+                </div>
+
+                <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Recommendation score</h3>
+                  </div>
+                </div>
+
+                <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Predict price for 3 cryptocurrencies</h3>
+                  </div>
+                </div>
+
+                <div class="col-md-6" data-aos="zoom-out" data-aos-delay="700">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Get the final recommendation</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Feature Tabs -->
+        </div>
+      </section>
+      <!-- End Features Section -->
+
+      <!-- ======= market price Section ======= -->
+      <section id="market" class="counts">
+        <div class="container" data-aos="fade-up">
+          <header class="section-header">
+            <h2>Market Price</h2>
+            <p>The current market price of crytpocurrency</p>
+          </header>
+          <div class="row gy-4">
+            <div class="col-lg-4 col-md-6">
+              <div class="count-box">
+                <img
+                  src="{{url_for('static',filename='assets/img/bitcoin-logo.webp')}}"
+                  style="width: 90px"
+                  alt=""
+                />
+                <div>
+                  <span>${{bitcoin}}</span>
+                  <p>Bitcoin</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+              <div class="count-box">
+                <img
+                  src="{{url_for('static',filename='assets/img/ethereum-logo.webp')}}"
+                  style="width: 90px"
+                  alt=""
+                />
+                <div>
+                  <span>${{ethereum}}</span>
+                  <p>Ethereum</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+              <div class="count-box">
+                <img
+                  src="{{url_for('static',filename='assets/img/matic.png')}}"
+                  style="width: 90px"
+                  alt=""
+                />
+                <div>
+                  <span>${{matic}}</span>
+                  <p>Polygon Matic</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End market price Section -->
+
+      <!-- Start of the predict section -->
+      <section id="predict" class="counts">
+        <div class="container" data-aos="fade-up">
+          <header class="section-header">
+            <h2>Price Prediction</h2>
+            <p>Predict the price of cryptocurrencies and get instant results</p>
+          </header>
+          <form
+            class="select-coin"
+            method="POST"
+            action="{{ url_for('prediction')}}"
+          >
+            <div class="row gy-4">
+              <div class="col-lg-4 col-md-6">
+                <div class="count-box">
+                  <img
+                    src="{{url_for('static',filename='assets/img/bitcoin-logo.webp')}}"
+                    style="width: 90px"
+                    alt=""
+                  />
+                  <div>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: royalblue"
+                      href="predict.html"
+                      value="BTC-USD"
+                      type="submit"
+                      name="coin"
+                    >
+                      Predict BTC
+                    </button>
+                    <p>Bitcoin</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="count-box">
+                  <img
+                    src="{{url_for('static',filename='assets/img/ethereum-logo.webp')}}"
+                    style="width: 90px"
+                    alt=""
+                  />
+                  <div>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: royalblue"
+                      href="predict.html"
+                      value="ETH-USD"
+                      type="submit"
+                      name="coin"
+                    >
+                      Predict ETH
+                    </button>
+                    <p>Ethereum</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="count-box">
+                  <img
+                    src="{{url_for('static',filename='assets/img/matic.png')}}"
+                    style="width: 90px"
+                    alt=""
+                  />
+                  <div>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: royalblue"
+                      href="predict.html"
+                      value="MATIC-USD"
+                      type="submit"
+                      name="coin"
+                    >
+                      Predict MATIC
+                    </button>
+                    <p>Polygon Matic</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- End of the predict section -->
+
+      <!-- ======= Team Section ======= -->
+      <section id="team" class="team">
+        <div class="container" data-aos="fade-up">
+          <header class="section-header">
+            <h2>Team</h2>
+            <p>Our project team under guidance of Prof. Ravindra Divekar</p>
+          </header>
+
+          <div class="row gy-4">
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="member">
+                <div class="member-img">
+                  <img
+                    src="{{url_for('static',filename='assets/img/team/jash.jpeg')}}"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Jash Shah</h4>
+                  <span>1814054</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="member">
+                <div class="member-img">
+                  <img
+                    src="{{url_for('static',filename='assets/img/team/neelay.jpeg')}}"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Neelay Jagani</h4>
+                  <span>1814024</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="member">
+                <div class="member-img">
+                  <img
+                    src="{{url_for('static',filename='assets/img/team/rudresh.jpeg')}}"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Rudresh Raval</h4>
+                  <span>1814104</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="member">
+                <div class="member-img">
+                  <img
+                    src="{{url_for('static',filename='assets/img/team/harsh.jpg')}}"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Harsh Sachala</h4>
+                  <span>1814105</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Team Section -->
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="copyright">
+          <strong><span> Disclaimer: </span></strong>
+          The price prediction algorithm is for informational purposes only. The
+          predicted price will change with respect to time. The recommendation
+          given is purely on the basis of calculations, do your own research and
+          then invest in the crypto markets as cryptocurrencies are subject to
+          market risks.
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src=" {{url_for('static', filename='assets/vendor/purecounter/purecounter.js')}}"></script>
+    <script src=" {{url_for('static', filename='assets/vendor/aos/aos.js')}}"></script>
+    <script src=" {{url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src=" {{url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src=" {{url_for('static', filename='assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+    <script src=" {{url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+    <script src=" {{url_for('static', filename='assets/vendor/php-email-form/validate.js')}}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{url_for('static', filename='assets/js/main.js')}}"></script>
+  </body>
+</html>

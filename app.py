@@ -44,7 +44,10 @@ def before_first_request_func():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    bitcoin = get_quote_data('btc-usd')['regularMarketPrice']
+    ethereum = get_quote_data('eth-usd')['regularMarketPrice']
+    matic = get_quote_data('matic-usd')['regularMarketPrice']
+    return render_template('index.html', bitcoin=bitcoin, ethereum=ethereum, matic=matic)
 
 @app.route('/prediction',methods=['POST'])
 def prediction():
@@ -149,10 +152,12 @@ def prediction():
     
     # Pie chart of sentiments
     y = np.array([p_perc, n_perc])
-    mylabels = ["Positive", "Negative",]
+    mylabels = ["Positive", "Negative"]
     myexplode = [0.2, 0]
-    plt.figure(1,figsize=(13, 13))
-    plt.pie(y, labels = mylabels, explode = myexplode)
+    fig, ax = plt.subplots(figsize=(16,7))
+    ax.pie(y, labels = mylabels, explode=myexplode)
+    plt.tight_layout()
+    plt.legend(loc="lower left", bbox_to_anchor=(0,0,1,1))
     pie_name = "./static/img/{}_sentiment_percent".format(coin)
     plt.savefig(pie_name)
 
@@ -162,19 +167,23 @@ def prediction():
     weight_crypto = 100 - weight_ml
 
     # calculating recommendation score
-    recommendation_score = (returns*weight_ml + p_perc/100*weight_crypto)/100
+    recommendation_score = (returns*weight_ml + p_perc/100*weight_crypto)
 
     if(predicted_5_days_forecast_price_test_x.mean() > get_quote_data('btc-usd')['regularMarketPrice'] and p_perc > n_perc):
-        final_result= "Most probably if you buy this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.\nRecommendation: BUY"
+        final_result= "<strong>Most probably if you buy this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.</strong> <br><br><i>Recommendation</i>: <strong>BUY</strong>"
     elif(predicted_5_days_forecast_price_test_x.mean() < get_quote_data('btc-usd')['regularMarketPrice'] and p_perc < n_perc):
-        final_result= "Most probably if you short this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.\nRecommendation: SHORT"
+        final_result= "<strong>Most probably if you short this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.</strong> <br><br><i>Recommendation</i>: <strong>SELL</strong>"
     else:
-        if(recommendation_score>0.095):
-            final_result= "Most probably if you buy this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.\nRecommendation: BUY"
+        if(recommendation_score>9.5):
+            final_result= "<strong>Most probably if you buy this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.</strong> <br><br><i>Recommendation</i>: <strong>BUY</strong>"
         else:
-            final_result= "Most probably if you short this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.\nRecommendation: SHORT"
+            final_result= "<strong>Most probably if you short this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.</strong> <br><br><i>Recommendation</i>: <strong>SELL</strong>"
+    
+    print(recommendation_score)
+    final_score = finalScore(recommendation_score)
     img_pred = "../static/img/{}_prediction_5days.png".format(coin)
-    return render_template('plot.html', coin=coin, mean_predicted=mean_predicted, Positive_tweets=p_perc, Negative_tweets=n_perc, score=recommendation_score, final_result=final_result, src=img_pred)
+    img_sent = "../static/img/{}_sentiment_percent.png".format(coin)
+    return render_template('predict.html', coin=coin, mean_predicted=mean_predicted, positive_tweets=round(p_perc,2), negative_tweets=round(n_perc,2), score=final_score, final_result=final_result, src_ml=img_pred, src_sent=img_sent)
 
 def dataset_generator_lstm(dataset, look_back=5):
     dataX, dataY = [], []
@@ -256,6 +265,11 @@ def fetch_tweets(query, count = 300):
   except Exception as e:
     print("Error : " + str(e))
     exit(1)
+
+def finalScore(recommendation_score):
+  score = round(recommendation_score,2)
+  score = (score + 100) / 2
+  return score
 
 if __name__=="__main__":
     app.run(debug=True)
