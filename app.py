@@ -162,7 +162,7 @@ def prediction():
     plt.savefig(pie_name)
 
     # Calculation of both the models
-    returns = (predicted_5_days_forecast_price_test_x.mean()/get_quote_data('btc-usd')['regularMarketPrice'])-1
+    returns = (predicted_5_days_forecast_price_test_x.mean()/get_quote_data(coin)['regularMarketPrice'])-1
     weight_ml = 80
     weight_crypto = 100 - weight_ml
 
