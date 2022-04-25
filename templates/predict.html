@@ -129,7 +129,12 @@
                 box-shadow: 5px 10px 8px #888888;
               "
             >
-              <img src="{{src_ml}}" class="card-img-top" alt="..." />
+              <img
+                src="/plot-ml?v1={{v1}}&v2={{v2}}&v3={{v3}}&v4={{v4}}&v5={{v5}}"
+                class="card-img-top"
+                style="width: 38vw"
+                alt="Machine Learning Prediction for 5 Days"
+              />
               <div class="card-body">
                 <h2 class="card-title">Prediction using Machine Learning</h2>
                 <p class="card-text">
@@ -146,7 +151,12 @@
                 box-shadow: 5px 10px 8px #888888;
               "
             >
-              <img src="{{src_sent}}" class="card-img-top" alt="..." />
+              <img
+                src="/plot-sentiment?positive={{positive_tweets}}&negative={{negative_tweets}}"
+                class="card-img-top"
+                alt="Pie chart of sentiments"
+                style="width: 38vw"
+              />
               <div class="card-body">
                 <h2 class="card-title">Sentiment Analysis</h2>
                 <p class="card-text">Positive Tweets %: {{positive_tweets}}</p>

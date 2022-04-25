@@ -1,6 +1,10 @@
+from array import array
+from ast import Return
+from cProfile import label
 import os
 import math
 import warnings
+from matplotlib import markers
 warnings.filterwarnings('ignore')
 import pandas as pd
 import numpy as np
@@ -14,10 +18,13 @@ from sklearn.metrics import mean_poisson_deviance, mean_gamma_deviance, accuracy
 from sklearn.preprocessing import MinMaxScaler
 from itertools import product
 import statsmodels.api as sm
+from flask import Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 from tensorflow.keras.models import load_model
 
 # Sentiment analysis libraries
-import re 
+import re
 import tweepy 
 import nltk
 import pandas as pd
@@ -48,6 +55,46 @@ def home():
     ethereum = get_quote_data('eth-usd')['regularMarketPrice']
     matic = get_quote_data('matic-usd')['regularMarketPrice']
     return render_template('index.html', bitcoin=bitcoin, ethereum=ethereum, matic=matic)
+
+@app.route('/plot-ml')
+def plot_ml_png():
+    v1 = request.args.get('v1', type=float)
+    v2 = request.args.get('v2', type=float)
+    v3 = request.args.get('v3', type=float)
+    v4 = request.args.get('v4', type=float)
+    v5 = request.args.get('v5', type=float)
+    five_days_pred = [v1,v2,v3,v4,v5]
+    fig = create_ml_plot(five_days_pred)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+def create_ml_plot(five_days_pred):
+    fig, ax = plt.subplots(figsize=(16,7))
+    ax.plot(five_days_pred, 'r', marker='.', label='Prediction for next 5 days')
+    plt.tight_layout()
+    plt.legend()
+    return fig
+
+    
+@app.route('/plot-sentiment')
+def plot_sentiment_png():
+    positive = request.args.get('positive', type=float)
+    negative = request.args.get('negative', type=float)
+    split = np.array([positive,negative])
+    fig = create_pie_chart(split)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+def create_pie_chart(split):
+    mylabels = ["Positive", "Negative"]
+    myexplode = [0.2, 0]
+    fig, ax = plt.subplots(figsize=(16,7))
+    ax.pie(split, labels = mylabels, explode=myexplode)
+    plt.tight_layout()
+    plt.legend(loc="lower left", bbox_to_anchor=(0,0,1,1))
+    return fig
 
 @app.route('/prediction',methods=['POST'])
 def prediction():
@@ -96,14 +143,6 @@ def prediction():
     predicted_btc_price_test_data = scaler_test.inverse_transform(predicted_btc_price_test_data.reshape(-1, 1))
     test_actual = scaler_test.inverse_transform(testY.reshape(-1, 1))
 
-    #PredictionPlot
-    # plt.figure(figsize=(16,7))
-    # plt.plot(predicted_btc_price_test_data, 'r', marker='.', label='Predicted Test')
-    # plt.plot(test_actual, marker='.', label='Actual Test')
-    # plt.legend()
-    # plt.savefig("./static/img/")
-
-    # Prediction for next five days
     
     lookback_period = 5
     testX_last_5_days = testX[testX.shape[0] - lookback_period :  ]
@@ -121,15 +160,6 @@ def prediction():
     predicted_5_days_forecast_price_test_x = predicted_5_days_forecast_price_test_x.flatten()
 
     #Plotting prediction days
-
-    plt.figure(figsize=(16,7))
-    # plt.plot(btc_closing_price_groupby_date, marker='_', label='Actual Data')
-    plt.plot(predicted_5_days_forecast_price_test_x, 'r', marker='.', label='Prediction for next 5 days')
-
-    plt.legend()
-    save_path = "./static/img/{}_prediction_5days".format(coin)
-    
-    plt.savefig(save_path)
 
     mean_predicted =predicted_5_days_forecast_price_test_x.mean()
 
@@ -150,16 +180,6 @@ def prediction():
     p_perc = p_perc + neutral_perc/2
     n_perc = n_perc + neutral_perc/2
     
-    # Pie chart of sentiments
-    y = np.array([p_perc, n_perc])
-    mylabels = ["Positive", "Negative"]
-    myexplode = [0.2, 0]
-    fig, ax = plt.subplots(figsize=(16,7))
-    ax.pie(y, labels = mylabels, explode=myexplode)
-    plt.tight_layout()
-    plt.legend(loc="lower left", bbox_to_anchor=(0,0,1,1))
-    pie_name = "./static/img/{}_sentiment_percent".format(coin)
-    plt.savefig(pie_name)
 
     # Calculation of both the models
     returns = (predicted_5_days_forecast_price_test_x.mean()/get_quote_data(coin)['regularMarketPrice'])-1
@@ -179,11 +199,14 @@ def prediction():
         else:
             final_result= "<strong>Most probably if you short this crypto currency you will make profit. Algorithm is subject to market risk. Please invest safely.</strong> <br><br><i>Recommendation</i>: <strong>SELL</strong>"
     
-    print(recommendation_score)
+    
     final_score = finalScore(recommendation_score)
-    img_pred = "../static/img/{}_prediction_5days.png".format(coin)
-    img_sent = "../static/img/{}_sentiment_percent.png".format(coin)
-    return render_template('predict.html', coin=coin, mean_predicted=mean_predicted, positive_tweets=round(p_perc,2), negative_tweets=round(n_perc,2), score=final_score, final_result=final_result, src_ml=img_pred, src_sent=img_sent)
+    
+    five_days_pred = []
+    for i in predicted_5_days_forecast_price_test_x:
+      five_days_pred.append(i)
+    
+    return render_template('predict.html', coin=coin, mean_predicted=mean_predicted, positive_tweets=round(p_perc,2), negative_tweets=round(n_perc,2), score=final_score, final_result=final_result, v1=five_days_pred[0],v2=five_days_pred[1],v3=five_days_pred[2],v4=five_days_pred[3],v5=five_days_pred[4])
 
 def dataset_generator_lstm(dataset, look_back=5):
     dataX, dataY = [], []
