@@ -220,10 +220,10 @@ def dataset_generator_lstm(dataset, look_back=5):
 # Sentiment analysis functions 
 
 def connect():
-        consumer_key = '4dcos7jIWYNJcSMU0HJKyXGIg'
-        consumer_secret = '8VNhUHqtlhMqRxXSrjDuALrshahOTjwN5gEERvocriZ3nWhu4v'
-        access_token = '1147947554065174528-ICmjnTmWXgj3BWdGZu0tUjOK5IEsPk'
-        access_token_secret = 'O57vu4kK7bzU9EPb2K0GCHlI2AhTzV0Xr5RtNmeLcckCz'
+        consumer_key = 'YOUR_consumer_key'
+        consumer_secret = 'YOUR_consumer_secret'
+        access_token = 'YOUR_access_token'
+        access_token_secret = 'YOUR_access_token_secret'
 
         try:
             auth = OAuthHandler(consumer_key, consumer_secret)
