@@ -1,4 +1,4 @@
-# finaly-year-project-crypto
+# Cryptocurrency Investment Scorer
 This github repository consists of Group 30's Final year project "Cryptocurrency Investment Scorer".
 It contains the code for the web app which executes the logic of our project.
 We combine both sentimental analysis and machine learning algorithm in an appropriately weighted manner in order to give highly accurate results.
